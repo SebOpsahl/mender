@@ -90,7 +90,17 @@ ExpectedMetaData Parse(io::Reader &reader) {
 
 	const json::Json meta_data_json = expected_json.value();
 
+<<<<<<< HEAD
 	return VerifyMetaDataJson(meta_data_json);
+=======
+	if (!meta_data_json.IsObject()) {
+		return expected::unexpected(parser_error::MakeError(
+			parser_error::Code::ParseError,
+			"The meta-data needs to be valid JSON with a top-level JSON object"));
+	}
+
+	return meta_data_json;
+>>>>>>> 15131c54 (fix: Unify meta-data element support in mender-artifact and C++ parser, and relax to accept all valid JSON)
 }
 
 } // namespace meta_data
